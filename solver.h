@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "data.h"
 #include "position.h"
 
 class Solver {

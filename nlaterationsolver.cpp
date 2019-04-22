@@ -36,7 +36,8 @@ Position NlaterationSolver::solve(vector<double> sample_rssi_vector) {
                 auto distance = distances.begin();
                 double distance_sum = 0; 
                 for(auto accesspoint: m_dataset) {
-                    distance_sum += sqrt(pow(accesspoint->getPosition().getX()-x,2) + pow(accesspoint->getPosition().getY()-y,2) + pow(accesspoint->getPosition().getZ()-z,2)) - *distance;
+                    Position point(x, y, z);
+                    distance_sum += accesspoint->getPosition().distance(point) - *distance;
                     distance++;
                 }
                 if(distance_sum < distance_min) {
