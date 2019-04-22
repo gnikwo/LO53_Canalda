@@ -29,22 +29,19 @@ Position NlaterationSolver::solve(vector<double> sample_rssi_vector) {
     double distance_min = 99999;
     Position pos;
     auto distances = getDistances(sample_rssi_vector);
-    for(auto d: distances) cout << d << endl;
     for(double x = x_min; x < x_max; x += 0.1) {
         for(double y = y_min; y < y_max; y += 0.1) {
             for(double z = z_min; z < z_max; z += 0.1) {
                 auto distance = distances.begin();
                 double distance_sum = 0; 
+                Position point(x, y, z);
                 for(auto accesspoint: m_dataset) {
-                    Position point(x, y, z);
-                    distance_sum += accesspoint->getPosition().distance(point) - *distance;
+                    distance_sum += abs(accesspoint->getPosition().distance(point) - *distance);
                     distance++;
                 }
                 if(distance_sum < distance_min) {
                     distance_min = distance_sum;
-                    pos.setX(x);
-                    pos.setY(y);
-                    pos.setZ(z);
+                    pos = point;
                 }
             }
         }

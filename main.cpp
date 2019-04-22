@@ -38,14 +38,6 @@ Solver* factory(int i) {
 
 int main(int argc, char** argv) {
     Position phone(2.5, 4, 3);
-    Position a(0.5, 0.5, 0);
-    Position b(4, 0, 0);
-    Position c(4, 5, 5);
-    Position d(3, 3, 3);
-    cout << phone.distance(a) << endl;
-    cout << phone.distance(b) << endl;
-    cout << phone.distance(c) << endl;
-    cout << phone.distance(d) << endl;
     Solver* s = factory(1);
     //cout << s->solve({-26, -42, -13, -46}) << endl;
     cout << s->solve({-33.43349, -33.76453, -28.01424, -20.37994}) << endl;
